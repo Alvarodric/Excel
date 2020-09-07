@@ -1,0 +1,52 @@
+Sub ALTASyBAJAS()
+'
+' ALTASyBAJAS Macro
+' TE SACA LAS ALTAS Y BAJAS
+'
+' Keyboard Shortcut: Ctrl+Shift+B
+'
+
+    Sheets.Add After:=ActiveSheet
+    ActiveSheet.Select
+    ActiveSheet.Name = "ALTASYBAJAS"
+    Sheets("NEW_DELETED TAGS").Select
+    ActiveSheet.Range("$N$9:$Y$10557").AutoFilter Field:=5, Criteria1:="1"
+    Range("N9:R9").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.Copy
+    Sheets("ALTASYBAJAS").Select
+    Range("A2").Select
+    ActiveSheet.Paste
+    Sheets("NEW_DELETED TAGS").Select
+    Application.CutCopyMode = False
+    ActiveSheet.ShowAllData
+    ActiveSheet.Range("$N$9:$Y$10557").AutoFilter Field:=6, Criteria1:="1"
+    ActiveWindow.SmallScroll ToRight:=3
+    Range("T9:X9").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.Copy
+    Sheets("ALTASYBAJAS").Select
+    Range("G2").Select
+    ActiveSheet.Paste
+    Range("G1").Select
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "ALTAS"
+    Range("A1").Select
+    ActiveCell.FormulaR1C1 = "BAJAS"
+    Range("A1").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    Range("G1").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+End Sub
